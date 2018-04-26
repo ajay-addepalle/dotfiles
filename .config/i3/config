@@ -21,7 +21,7 @@ set $ws6 "6"
 set $ws7 "7"
 set $ws8 "8"
 set $ws9 "9"
-set $ws10 "10"
+set $ws10 "10:"
 
 set $terminal_type 'xfce4-terminal --hide-menubar'
 
@@ -31,7 +31,7 @@ set $terminal_type 'xfce4-terminal --hide-menubar'
 
 # This font is widely installed, provides lots of unicode glyphs, right-to-left
 # text rendering and scalability on retina/hidpi displays (thanks to pango).
-font pango:SourceCodePro Regular 11, FontAwesome 11
+font pango:FontAwesome 12,IBM Plex Mono Text 12
 
 # Before i3 v4.8, we used to recommend this one as the default:
 # font -misc-fixed-medium-r-normal--13-120-75-75-C-70-iso10646-1
@@ -50,7 +50,10 @@ bindsym $mod+Return exec xfce4-terminal --hide-menubar
 bindsym $mod+Shift+q kill
 
 # start dmenu (a program launcher)
-bindsym $mod+d exec dmenu_run
+#bindsym $mod+d exec dmenu_run
+#bindsym $mod+d exec rofi -show run
+bindsym $mod+d exec "rofi -combi-modi window,drun,run,ssh -show combi -modi combi"
+
 # There also is the (new) i3-dmenu-desktop which only displays applications
 # shipping a .desktop file. It is a wrapper around dmenu, so you need that
 # installed.
@@ -180,7 +183,7 @@ bar {
 # borders ~ajay
 new_window pixel 1
 new_float pixel 1
-hide_edge_borders both
+hide_edge_borders smart
 client.focused #9fbc00 #9fbc00 #111111
 client.unfocused #444444 #444444 #315858
 client.focused_inactive #444444 #444444 #2c2c2f
@@ -189,6 +192,8 @@ client.urgent #383a3b #383a3b #ee0000
 # assign to workspaces ~ajay
 assign [class="Firefox"] $ws2
 assign [class="jetbrains-idea"] $ws3
+assign [class="jetbrains-toolbox"] $ws3
+assign [class="spotify"] $ws9
 
 # locker ~ajay
 set $Locker i3lock -c 000000 && sleep 1
@@ -209,6 +214,9 @@ mode "$mode_system" {
 
 bindsym $mod+Delete mode "$mode_system"
 
+# window prompt for rofi
+bindsym $mod+Home exec rofi -show window
+
 # screen shot binds ~ajay
 # take screenshot selection
 bindsym $mod+Print exec --no-startup-id  scrot "$HOME/Pictures/Screenshots/%Y-%m-%d %H-%M-%S %z.png" && notify-send "png screenshot taken"
@@ -224,10 +232,13 @@ bindsym XF86MonBrightnessUp exec --no-startup-id /usr/bin/bu.sh
 bindsym XF86MonBrightnessDown exec --no-startup-id /usr/bin/bd.sh
 
 # autostart wallpaper ~ajay
-exec_always --no-startup-id xsetroot -solid '#151010' &
+#exec_always --no-startup-id xsetroot -solid '#002b36' &
+exec_always --no-startup-id feh --bg-fill ~/Pictures/Silmarillion_Vanir.jpg
+
 # exec --no-startup-id xfce4-terminal --hide-menubar -e task
 # exec --no-startup-id i3-msg 'workspace '"$ws1"'; exec xfce4-terminal -e task --hold'
 exec --no-startup-id dunst -config ~/.config/dunst/dunstrc
 exec --no-startup-id xinput set-prop "SynPS/2 Synaptics TouchPad" "libinput Tapping Enabled" 1
-
-
+#exec --no-startup-id /home/aadev/.config/i3/scripts/ext_monitor_setup.sh
+exec --no-startup-id /usr/bin/xmodmap -e "keycode 107 = Menu"
+#exec --no-startup-id redshift
