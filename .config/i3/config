@@ -245,3 +245,6 @@ exec --no-startup-id xinput set-prop "Synaptics TM3289-002" "libinput Tapping En
 #exec --no-startup-id /home/aadev/.config/i3/scripts/ext_monitor_setup.sh
 exec --no-startup-id /usr/bin/xmodmap -e "keycode 107 = Menu"
 #exec --no-startup-id redshift
+exec --no-startup-id compton --opacity-rule '100:window_type = "dock" && class_g = "i3bar"' --config ~/.config/compton.conf -b
+
+
