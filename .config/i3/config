@@ -169,7 +169,7 @@ bindsym $mod+r mode "resize"
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
 bar {
-        status_command i3status -c ~/.config/i3/i3status.conf
+    status_command i3status -c ~/.config/i3/i3status.conf
 	position top
 	colors { # ~ajay
  		background #000000
@@ -181,22 +181,25 @@ bar {
 }
 
 # borders ~ajay
-new_window pixel 1
-new_float pixel 1
+new_window pixel 2px
+new_float pixel 2px
 hide_edge_borders smart
 client.focused #9fbc00 #9fbc00 #111111
 client.unfocused #444444 #444444 #315858
 client.focused_inactive #444444 #444444 #2c2c2f
 client.urgent #383a3b #383a3b #ee0000
 
+
 # assign to workspaces ~ajay
 assign [class="Firefox"] $ws2
+assign [class="Code"] $ws3
 assign [class="jetbrains-idea"] $ws3
 assign [class="jetbrains-toolbox"] $ws3
 assign [class="spotify"] $ws9
 
 # locker ~ajay
-set $Locker i3lock -c 000000 && sleep 1
+#set $Locker i3lock -c 000000 && sleep 1
+set $Locker i3lock -t -e -f -i ~/Pictures/i3-lock-bg.png
 
 set $mode_system System (l) lock, (e) logout, (s) suspend, (h) hibernate, (r) reboot, (Shift+s) shutdown
 mode "$mode_system" {
@@ -233,12 +236,12 @@ bindsym XF86MonBrightnessDown exec --no-startup-id /usr/bin/bd.sh
 
 # autostart wallpaper ~ajay
 #exec_always --no-startup-id xsetroot -solid '#002b36' &
-exec_always --no-startup-id feh --bg-fill ~/Pictures/Silmarillion_Vanir.jpg
+exec_always --no-startup-id feh --bg-scale ~/Pictures/forest_fog_trees_126479_3840x2160.jpg
 
 # exec --no-startup-id xfce4-terminal --hide-menubar -e task
 # exec --no-startup-id i3-msg 'workspace '"$ws1"'; exec xfce4-terminal -e task --hold'
 exec --no-startup-id dunst -config ~/.config/dunst/dunstrc
-exec --no-startup-id xinput set-prop "SynPS/2 Synaptics TouchPad" "libinput Tapping Enabled" 1
+exec --no-startup-id xinput set-prop "Synaptics TM3289-002" "libinput Tapping Enabled" 1
 #exec --no-startup-id /home/aadev/.config/i3/scripts/ext_monitor_setup.sh
 exec --no-startup-id /usr/bin/xmodmap -e "keycode 107 = Menu"
 #exec --no-startup-id redshift
