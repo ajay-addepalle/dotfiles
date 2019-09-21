@@ -107,7 +107,7 @@ bindsym $mod+space focus mode_toggle
 bindsym $mod+a focus parent
 
 # focus the child container
-#bindsym $mod+d focus child
+bindsym $mod+Shift+a focus child
 
 # switch to workspace
 bindsym $mod+1 workspace $ws1
@@ -170,7 +170,8 @@ bindsym $mod+r mode "resize"
 # finds out, if available)
 bar {
     status_command i3status -c ~/.config/i3/i3status.conf
-	position top
+    font pango:Source Code Pro for Powerline 12
+	position bottom
 	colors { # ~ajay
  		background #000000
 		statusline #33aaff
@@ -181,20 +182,24 @@ bar {
 }
 
 # borders ~ajay
-new_window pixel 2px
-new_float pixel 2px
+default_border pixel 3
+default_floating_border pixel 3
+#new_window pixel 4px
+#new_float pixel 2px
 hide_edge_borders smart
 client.focused #9fbc00 #9fbc00 #111111
 client.unfocused #444444 #444444 #315858
 client.focused_inactive #444444 #444444 #2c2c2f
 client.urgent #383a3b #383a3b #ee0000
 
+# popups in fullscreen mode ~ajay
+#popup_during_fullscreen smart
 
 # assign to workspaces ~ajay
 assign [class="Firefox"] $ws2
 assign [class="Code"] $ws3
 assign [class="jetbrains-idea"] $ws3
-assign [class="jetbrains-toolbox"] $ws3
+#assign [class="jetbrains-toolbox"] $ws3
 assign [class="spotify"] $ws9
 
 # locker ~ajay
@@ -247,4 +252,6 @@ exec --no-startup-id /usr/bin/xmodmap -e "keycode 107 = Menu"
 #exec --no-startup-id redshift
 exec --no-startup-id compton --opacity-rule '100:window_type = "dock" && class_g = "i3bar"' --config ~/.config/compton.conf -b
 
+for_window [class="^jetbrains-.+"][window_type=dialog] focus
+for_window [instance="sun-awt-X11-XWindowPeer"] border pixel 0
 
