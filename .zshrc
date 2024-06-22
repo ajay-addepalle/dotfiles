@@ -1,1 +1,1 @@
-.zshrc
+/home/aaddepalle/.zshrc
