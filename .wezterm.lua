@@ -1,0 +1,1 @@
+/home/aaddepalle/.wezterm.lua
