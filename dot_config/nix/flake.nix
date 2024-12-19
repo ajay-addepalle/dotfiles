@@ -50,6 +50,13 @@
 	obsidian
       ];
 
+      fonts.packages = with pkgs; [
+      	nerd-fonts.fira-code
+	nerd-fonts.blex-mono
+	nerd-fonts.caskaydia-cove
+	noto-fonts
+      ];
+
       homebrew = {
         enable = true;
         onActivation = {
