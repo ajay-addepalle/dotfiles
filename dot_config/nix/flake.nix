@@ -45,6 +45,7 @@
         git
 	neovim
         chezmoi
+	obsidian
       ];
 
       homebrew = {
