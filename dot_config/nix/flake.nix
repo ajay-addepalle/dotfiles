@@ -5,6 +5,7 @@
     nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
     nix-darwin.url = "github:LnL7/nix-darwin";
     nix-darwin.inputs.nixpkgs.follows = "nixpkgs";
+    nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
     nix-homebrew.url = "github:zhaofengli-wip/nix-homebrew";
     # Optional: Declarative tap management
     homebrew-core = {
@@ -21,13 +22,28 @@
     };
   };
 
-  outputs = inputs@{ self, nix-darwin, nixpkgs, nix-homebrew, homebrew-core, homebrew-cask, homebrew-bundle }:
-  let
-    configuration = { pkgs, ... }: {
+  outputs = { 
+    self, 
+    nix-darwin, 
+    nixpkgs, 
+    nix-homebrew, 
+    homebrew-core, 
+    homebrew-cask, 
+    homebrew-bundle,
+    ...
+  } @inputs: let
+    configuration = { 
+      pkgs,
+      lib,
+      config,
+      ... 
+    }: {
       # List packages installed in system profile. To search by name, run:
       # $ nix-env -qaP | grep wget
+      nixpkgs.config.allowUnfree = true;
       environment.systemPackages = with pkgs; [ 
-        neovim
+        git
+	neovim
         chezmoi
       ];
 
@@ -38,10 +54,21 @@
          cleanup = "zap";
          upgrade = true;
         };
+	brews = [
+	  "mas"
+	];
         casks = [
           "maccy"
         ];
+	taps = [
+	];
+	masApps = {
+          Boop = 1518425043;
+	};
       };
+
+
+
       #Auto upgrade nix package and the daemon service.
       services.nix-daemon.enable = true;
       
