@@ -1,11 +1,29 @@
 {
   description = "Ajay's nix-darwin system flake";
 
+  # the nixConfig here only affects the flake itself, not the system configuration!
+  # Picked up from https://github.com/ryan4yin/nix-darwin-kickstarter
+  nixConfig = {
+    substituters = [
+      # Query the mirror of USTC first, and then the official cache.
+      "https://mirrors.ustc.edu.cn/nix-channels/store"
+      "https://cache.nixos.org"
+    ];
+  };
+
+  # This is the standard format for flake.nix. `inputs` are the dependencies of the flake,
+  # Each item in `inputs` will be passed as a parameter to the `outputs` function after being pulled and built.
   inputs = {
+    # official packages
     nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
+    nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
+    # home manager
+    home-manager.url = "github:nix-community/home-manager/master";
+    home-manager.inputs.nixpkgs.follows = "nixpkgs";
+    # macos stuff
     nix-darwin.url = "github:LnL7/nix-darwin";
     nix-darwin.inputs.nixpkgs.follows = "nixpkgs";
-    nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
+    # homebrew
     nix-homebrew.url = "github:zhaofengli-wip/nix-homebrew";
     # Optional: Declarative tap management
     homebrew-core = {
@@ -20,8 +38,14 @@
       url = "github:homebrew/homebrew-bundle";
       flake = false;
     };
+    
   };
-
+  
+  # The `outputs` function will return all the build results of the flake.
+  # A flake can have many use cases and different types of outputs,
+  # parameters in `outputs` are defined in `inputs` and can be referenced by their names.
+  # However, `self` is an exception, this special parameter points to the `outputs` itself (self-reference)
+  # The `@` syntax here is used to alias the attribute set of the inputs's parameter, making it convenient to use inside the function.
   outputs = { 
     self, 
     nix-darwin, 
@@ -48,6 +72,7 @@
 	neovim
         chezmoi
 	obsidian
+	maccy
       ];
 
       fonts.packages = with pkgs; [
@@ -61,21 +86,20 @@
         enable = true;
         onActivation = {
          autoUpdate = true;
-         cleanup = "zap";
+         cleanup = "uninstall";
          upgrade = true;
         };
 	brews = [
 	  "mas"
 	];
         casks = [
-          "maccy"
         ];
 	taps = [
 	];
 	masApps = {
           Boop = 1518425043;
 	};
-      };
+      }; 
 
       #system.activationScripts.applications.text = lib.mkForce ''
       #    # Set up applications.
