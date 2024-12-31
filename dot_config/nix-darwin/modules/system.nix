@@ -31,20 +31,36 @@
         wvous-tr-corner = 1;
         wvous-bl-corner = 1;
         wvous-br-corner = 1; 
-        
+
+        autohide-delay = 0.2;
+	autohide-time-modifier = 0.5;
+	# min effects, genie, scale, suck, 
+	mineffect = "genie";
+	persistent-apps = [
+	  "/Applications/Obsidian.app"
+	  # "/Applications/Ghostty.app"
+          "/Applications/Firefox.app"
+	  "/Applications/Safari.app"
+	  "/Applications/Discord.app"
+	  "/System/Applications/Music.app"
+	  "/System/Applications/System Settings.app"
+	];
       };
 
       finder = {
         AppleShowAllExtensions = true;
+	AppleShowAllFiles = true;
 	FXEnableExtensionChangeWarning = false;
 	_FXShowPosixPathInTitle = true;
+	_FXSortFoldersFirst = true;
 	ShowPathbar = true;
 	ShowStatusBar = true;
 	# when performing a search, search the current folder by default
 	FXDefaultSearchScope = "SCcf";
+	# clmv = column view, Nlsv = list view, glyv = gallery view, icnv = icon view
 	FXPreferredViewStyle = "clmv";
         NewWindowTarget = "Home";
-	QuitMenuItem = true;
+	QuitMenuItem = false;
 	ShowExternalHardDrivesOnDesktop = true;
         ShowRemovableMediaOnDesktop = true;
       };
@@ -73,6 +89,8 @@
           
       NSGlobalDomain = {
         AppleInterfaceStyle = "Dark";
+	ApplePressAndHoldEnabled = false;
+	"com.apple.keyboard.fnState" = true;
 	AppleInterfaceStyleSwitchesAutomatically = false;
         # If you press and hold certain keyboard keys when in a text area, the key’s character begins to repeat.
         # This is very useful for vim users, they use `hjkl` to move cursor.

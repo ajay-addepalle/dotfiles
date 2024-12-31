@@ -26,8 +26,15 @@
     neovim
     just
     chezmoi
+    zsh
+    zsh-completions
   ];
-  environment.variables.EDITOR = "nvim";
+
+  environment.variables = {
+    EDITOR = "nvim";
+    ZSH = "$HOME/.oh-my-zsh";
+    ZSH_CACHE_DIR = "$HOME/.cache/ohmyzsh";
+  };
 
   # TODO To make this work, homebrew need to be installed manually, see https://brew.sh
   #
@@ -58,6 +65,7 @@
       "alfred"
       "firefox"
       "google-chrome"
+      "nikitabobko/tap/aerospace"
       "discord"
       "maccy"
       "obsidian"
