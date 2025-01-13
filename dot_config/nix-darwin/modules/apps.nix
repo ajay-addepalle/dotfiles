@@ -34,7 +34,6 @@
     EDITOR = "nvim";
     ZSH = "$HOME/.oh-my-zsh";
     ZSH_CACHE_DIR = "$HOME/.cache/ohmyzsh";
-    FZF_DEFAULT_OPTS = "--height 40% --layout=reverse --border";
   };
 
   # TODO To make this work, homebrew need to be installed manually, see https://brew.sh
@@ -64,7 +63,6 @@
       "mas"
       "borders"
       # CLI
-      "zsh-autosuggestions"
     ];
 
     # `brew install --cask`
