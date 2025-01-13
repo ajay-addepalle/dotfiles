@@ -27,13 +27,14 @@
     just
     chezmoi
     zsh
-    zsh-completions
+    fzf
   ];
 
   environment.variables = {
     EDITOR = "nvim";
     ZSH = "$HOME/.oh-my-zsh";
     ZSH_CACHE_DIR = "$HOME/.cache/ohmyzsh";
+    FZF_DEFAULT_OPTS = "--height 40% --layout=reverse --border";
   };
 
   # TODO To make this work, homebrew need to be installed manually, see https://brew.sh
@@ -59,24 +60,39 @@
     # `brew install`
     # TODO Feel free to add your favorite apps here.
     brews = [
+      # SYSTEM TOOLS
       "mas"
       "borders"
+      # CLI
+      "zsh-autosuggestions"
     ];
 
     # `brew install --cask`
     # TODO Feel free to add your favorite apps here.
     casks = [
+      # SYSTEM TOOLS
       "alfred"
       "firefox"
       "google-chrome"
       "aerospace"
-      "discord"
       "maccy"
+
+      # COMMS
+      "discord"
+
+      # PRODUCTIVITY
       "obsidian"
-      "vnc-viewer"
+
+      # MEDIA
       "plexamp"
       "plex"
+
+      # NETWORK
       "tailscale"
+      "vnc-viewer"
+
+      # CLI
+      
     ];
     masApps = {
     };
