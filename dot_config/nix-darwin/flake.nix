@@ -46,7 +46,7 @@
     # $ darwin-rebuild build --flake .#mbpm4
     darwinConfigurations."${hostname}" = darwin.lib.darwinSystem {
       inherit system specialArgs;
-      modules = [ 
+      modules = [
         ./modules/nix-core.nix
         ./modules/system.nix
         ./modules/apps.nix

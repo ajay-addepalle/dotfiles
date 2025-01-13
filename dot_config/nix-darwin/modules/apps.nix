@@ -44,19 +44,23 @@
     enable = true;
 
     onActivation = {
-      autoUpdate = false;
+      autoUpdate = true;
+      upgrade = true;
       # 'zap': uninstalls all formulae(and related files) not listed here.
       cleanup = "uninstall";
     };
 
     taps = [
       "homebrew/services"
+      "nikitabobko/tap"
+      "FelixKratz/formulae"
     ];
 
     # `brew install`
     # TODO Feel free to add your favorite apps here.
     brews = [
       "mas"
+      "borders"
     ];
 
     # `brew install --cask`
@@ -65,11 +69,14 @@
       "alfred"
       "firefox"
       "google-chrome"
-      "nikitabobko/tap/aerospace"
+      "aerospace"
       "discord"
       "maccy"
       "obsidian"
       "vnc-viewer"
+      "plexamp"
+      "plex"
+      "tailscale"
     ];
     masApps = {
     };
