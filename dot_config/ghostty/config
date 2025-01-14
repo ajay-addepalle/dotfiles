@@ -1,4 +1,23 @@
 #
+#
+confirm-close-surface = false
+mouse-hide-while-typing = true
+
+window-padding-x = 1
+window-padding-y = 1
+
+macos-window-shadow = false
+
+clipboard-read = "allow"
+clipboard-paste-protection = false
+
+
+
 #font-family = "BlexMono Nerd Font Mono"
 #font-family = "FiraCode Nerd Font Mono"
 font-family = "CaskaydiaCove Nerd Font Mono"
+font-size = 18
+font-thicken = true
+
+adjust-cell-height = 10%
+
