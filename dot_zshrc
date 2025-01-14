@@ -84,6 +84,7 @@ export FZF_DEFAULT_OPTS="--height 40% --layout=reverse --border --scrollbar --co
 plugins=(
 	git
 	fzf
+	fzf-tab
 	zsh-autosuggestions
 	zsh-syntax-highlighting
 )
@@ -124,5 +125,6 @@ alias vim=nvim
 HISTSIZE=100000
 SAVEHIST=100000
 
-
+# zoxide for smarter cd command
+eval "$(zoxide init zsh --cmd cd)"
 #source $(brew --prefix)/share/zsh-autosuggestions/zsh-autosuggestions.zsh

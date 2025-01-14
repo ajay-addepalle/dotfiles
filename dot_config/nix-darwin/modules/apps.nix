@@ -63,6 +63,7 @@
       "mas"
       "borders"
       # CLI
+      "zoxide"
     ];
 
     # `brew install --cask`
