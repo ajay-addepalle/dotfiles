@@ -75,6 +75,7 @@
       "google-chrome"
       "aerospace"
       "maccy"
+      "ghostty"
 
       # COMMS
       "discord"

@@ -82,14 +82,21 @@ export FZF_DEFAULT_OPTS="--height 40% --layout=reverse --border --scrollbar --co
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(
+	timer
+	aliases
 	git
-	fzf
 	fzf-tab
 	zsh-autosuggestions
+	fzf
 	zsh-syntax-highlighting
 )
 
 source $ZSH/oh-my-zsh.sh
+
+## Plugin Configurations
+
+export TIMER_FORMAT='[%d]' 
+export TIMER_PRECISION=2 
 
 # User configuration
 
@@ -124,6 +131,21 @@ alias vim=nvim
 
 HISTSIZE=100000
 SAVEHIST=100000
+
+# ZSH zstyle
+# disable sort when completing `git checkout`
+zstyle ':completion:*:git-checkout:*' sort false
+# set descriptions format to enable group support
+# NOTE: don't use escape sequences (like '%F{red}%d%f') here, fzf-tab will ignore them
+zstyle ':completion:*:descriptions' format '[%d]'
+# set list-colors to enable filename colorizing
+zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
+# force zsh not to show completion menu, which allows fzf-tab to capture the unambiguous prefix
+zstyle ':completion:*' menu no
+
+# fzf popup feature for popup
+# zstyle ':fzf-tab:*' fzf-command ftb-tmux-popup
+
 
 # zoxide for smarter cd command
 eval "$(zoxide init zsh --cmd cd)"
