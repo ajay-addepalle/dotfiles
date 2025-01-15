@@ -64,6 +64,7 @@
       "borders"
       # CLI
       "zoxide"
+      "starship"
     ];
 
     # `brew install --cask`
@@ -75,7 +76,6 @@
       "google-chrome"
       "aerospace"
       "maccy"
-      "ghostty"
 
       # COMMS
       "discord"
@@ -91,7 +91,8 @@
       "tailscale"
       "vnc-viewer"
 
-      # CLI
+      # TERMINAL
+      "ghostty"
       
     ];
     masApps = {
