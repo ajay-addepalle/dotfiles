@@ -62,6 +62,7 @@
       # SYSTEM TOOLS
       "mas"
       "borders"
+      "sketchybar"
       # CLI
       "zoxide"
       "starship"

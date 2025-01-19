@@ -106,6 +106,7 @@
         NSAutomaticSpellingCorrectionEnabled = false;
         NSNavPanelExpandedStateForSaveMode = true;
         NSNavPanelExpandedStateForSaveMode2 = true;
+	_HIHideMenuBar = true;
 
       };
       # Customize settings that not supported by nix-darwin directly
@@ -150,6 +151,7 @@
     nerd-fonts.blex-mono
     nerd-fonts.caskaydia-cove
     nerd-fonts.iosevka
+    nerd-fonts.hack
     noto-fonts
   ];
 
