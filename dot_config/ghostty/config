@@ -27,3 +27,6 @@ font-thicken = true
 
 adjust-cell-height = 10%
 
+window-save-state = "default"
+# save state supports, always, never
+
