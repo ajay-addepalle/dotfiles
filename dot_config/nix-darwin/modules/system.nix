@@ -106,7 +106,12 @@
         NSAutomaticSpellingCorrectionEnabled = false;
         NSNavPanelExpandedStateForSaveMode = true;
         NSNavPanelExpandedStateForSaveMode2 = true;
+	# autohide the menu bar
 	_HIHideMenuBar = true;
+        # move window by holding ctrl + drag mouse
+	NSWindowShouldDragOnGesture = true;
+	# animate opening and closing window and popover
+	NSAutomaticWindowAnimationsEnabled = false;
 
       };
       # Customize settings that not supported by nix-darwin directly
