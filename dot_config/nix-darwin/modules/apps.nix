@@ -63,6 +63,7 @@
       "mas"
       "borders"
       "sketchybar"
+      "lua"
       # CLI
       "zoxide"
       "starship"
