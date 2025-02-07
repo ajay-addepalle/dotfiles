@@ -64,6 +64,8 @@
       "borders"
       "sketchybar"
       "lua"
+      "switchaudio-osx"
+      "nowplaying-cli"
       # CLI
       "zoxide"
       "starship"
@@ -78,6 +80,9 @@
       "google-chrome"
       "aerospace"
       "maccy"
+      "sf-symbols"
+      "font-sf-mono"
+      "font-sf-pro"
 
       # COMMS
       "discord"

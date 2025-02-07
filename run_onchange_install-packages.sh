@@ -22,3 +22,6 @@ git clone --depth 1 https://github.com/zsh-users/zsh-autosuggestions "${ZSH_CUST
 
 rm -rf "${ZSH_CUSTOM:-~/.oh-my-zsh/custom}"/plugins/fzf-tab
 git clone https://github.com/Aloxaf/fzf-tab ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/fzf-tab
+
+# skeytchybar lua 
+(git clone https://github.com/FelixKratz/SbarLua.git /tmp/SbarLua && cd /tmp/SbarLua/ && make install && rm -rf /tmp/SbarLua/)
