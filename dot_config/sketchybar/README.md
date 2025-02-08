@@ -18,7 +18,10 @@ Adapted from [FelixKratz/dotfiles: My personal macOS configuration](https://gith
 
 
 # Modifications
-Inspired by: https://github.com/dagrlx/dotfiles/tree/main
+Inspired by: 
+https://github.com/dagrlx/dotfiles/tree/main
+https://github.com/FelixKratz/SketchyBar/issues/647
+https://github.com/dagrlx/dotfiles/tree/main/dot_dotfiles/sketchybar
 
 
 
