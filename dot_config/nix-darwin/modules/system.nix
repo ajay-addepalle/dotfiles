@@ -61,7 +61,7 @@
 	# clmv = column view, Nlsv = list view, glyv = gallery view, icnv = icon view
 	FXPreferredViewStyle = "clmv";
         NewWindowTarget = "Home";
-	QuitMenuItem = false;
+	QuitMenuItem = true;
 	ShowExternalHardDrivesOnDesktop = true;
         ShowRemovableMediaOnDesktop = true;
       };

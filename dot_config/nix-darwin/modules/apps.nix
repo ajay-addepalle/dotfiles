@@ -83,6 +83,7 @@
       "sf-symbols"
       "font-sf-mono"
       "font-sf-pro"
+      "font-sketchybar-app-font"
 
       # COMMS
       "discord"
