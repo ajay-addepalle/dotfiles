@@ -132,7 +132,7 @@ alias -g vim=nvim
 # Environment variables
 # export LUA_PATH="$LUA_PATH;"
 # export LUA_CPATH="/opt/homebrew/lib/lua/5.4/?.so;/opt/homebrew/lib/lua/5.4/loadall.so;./?.so;/Users/aaddepalle/.local/share/sketchybar_lua/?.so"
-
+export PATH=/opt/homebrew/bin/lua:$PATH
 HISTSIZE=100000
 SAVEHIST=100000
 
