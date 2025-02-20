@@ -10,14 +10,14 @@ after-login-command = []
 # 'after-startup-command' is run after 'after-login-command'
 # Available commands : https://nikitabobko.github.io/AeroSpace/commands
 after-startup-command = [
-'exec-and-forget sketchybar --trigger aerospace_workspace_change FOCUSED_WORKSPACE=$AEROSPACE_FOCUSED_WORKSPACE',
+'exec-and-forget sketchybar --trigger aerospace_monitor_change FOCUSED_MONITOR=$AEROSPACE_FOCUSED_MONITOR',
 'exec-and-forget borders active_color=0xff77c23a inactive_color=0xff494d64 width=5.0'
 ]
 
 exec-on-workspace-change = [
 '/bin/bash', 
 '-c',
-'sketchybar --trigger aerospace_workspace_change FOCUSED_WORKSPACE=$AEROSPACE_FOCUSED_WORKSPACE'
+'exec-and-forget sketchybar --trigger aerospace_monitor_change FOCUSED_MONITOR=$AEROSPACE_FOCUSED_MONITOR',
 ]
 
 # Start AeroSpace at login
@@ -47,7 +47,11 @@ default-root-container-orientation = 'auto'
 # Fallback value (if you omit the key): on-focused-monitor-changed = []
 on-focused-monitor-changed = [
 'move-mouse monitor-lazy-center',
-'exec-and-forget sketchybar --trigger aerospace_monitor_change FOCUSED_MONITOR=$AEROSPACE_FOCUSED_MONITOR'
+'exec-and-forget sketchybar --trigger aerospace_monitor_change FOCUSED_MONITOR=$AEROSPACE_FOCUSED_MONITOR',
+]
+
+on-focus-changed = [
+  'exec-and-forget sketchybar --trigger aerospace_focus_change',
 ]
 
 # You can effectively turn off macOS "Hide application" (cmd-h) feature by toggling this flag
@@ -73,7 +77,7 @@ automatically-unhide-macos-hidden-apps = false
     inner.vertical =   0
     outer.left =       2
     outer.bottom =     2
-    outer.top =        4
+    outer.top =        2
     outer.right =      2
 
 # 'main' binding mode declaration
@@ -227,5 +231,5 @@ automatically-unhide-macos-hidden-apps = false
 
 # Window detection
 [[on-window-detected]]
-if.app-name-regex-substring = '(finder)|(discord)'
-run = 'layout floating'
+    if.app-name-regex-substring = '(finder)|(discord)'
+    run = 'layout floating'
