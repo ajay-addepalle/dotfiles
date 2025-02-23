@@ -207,7 +207,7 @@ automatically-unhide-macos-hidden-apps = false
     alt-shift-semicolon = 'mode service'
 
     # app bindings
-    alt-enter = 'exec-and-forget open -n /Applications/Ghostty.app'
+    alt-shift-enter = 'exec-and-forget open -n /Applications/Ghostty.app'
 
 # 'service' binding mode declaration.
 # See: https://nikitabobko.github.io/AeroSpace/guide#binding-modes
