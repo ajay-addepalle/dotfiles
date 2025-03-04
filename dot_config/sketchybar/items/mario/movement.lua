@@ -10,7 +10,7 @@ local icon_dir = os.getenv("HOME") .. "/.config/sketchybar/imgs"
 local mario_icon = icon_dir .. "/r_stand.png"
 local mario_width = 28
 local step_size = 5
-local animation_duration = 0.1
+local animation_duration = 0.08
 -- get display props
 function get_primary_display()
   local displays = sbar.query('displays')
@@ -57,48 +57,14 @@ end_position = right_end - mario_width
 print("start position", start_position)
 print("end position", end_position)
 
-local pipe_l = sbar.add("item", "pipe_l", {
-  position = "center",
-  width = "dynamic",
-  y_offset = -12,
-  padding_right = 92,
-  background = {
-    color = 0x00ffffff,
-    image = {
-      string = icon_dir .. "/warp_pipe_smw.png",
-      scale = 1,
-      border_width = 0,
-      corner_radius = 0,
-    },
-  },
-})
-
-local pipe_r = sbar.add("item", "pipe_r", {
-  position = "center",
-  width = "dynamic",
-  y_offset = -12,
-  padding_left = 92,
-  background = {
-    color = 0x00ffffff,
-    image = {
-      string = icon_dir .. "/warp_pipe_smw.png",
-      scale = 1,
-      border_width = 0,
-      corner_radius = 0,
-    },
-  },
-})
-
-
 local mario = sbar.add("item", "mario", {
   position = "left",
   width = "dynamic",
   y_offset = -15,
   background = {
     --color = 0xffa1b56c,
-    color = 0x00ffffff,
+    --color = 0xffffffff,
     --border_color = 0xffa1b56c,
-    corner_radius = 0,
     image = {
       string = mario_icon,
       scale = 1,
@@ -106,22 +72,6 @@ local mario = sbar.add("item", "mario", {
     },
   },
 })
-
-local mushroom = sbar.add("item", "mushroom", {
-  position = "left",
-  width = "dynamic",
-  y_offset = -8,
-  background = {
-    color = 0x00ffffff,
-    image = {
-      string = icon_dir .. "/mushroom_smw.png",
-      scale = 1,
-      border_width = 0,
-      corner_radius = 0,
-    },
-  },
-})
-
 
 function run_right()
   --local position = start_position
@@ -136,57 +86,57 @@ function run_right()
   local rend = end_position - start_position
   while lpad <= rend do
     if step == false then
---      sbar.animate("sin", 50, 
---        function()
---	  mario:set({
---	    background = {
---	      image = {
---	        string = icon_dir .. "/r_stand.png"
---	      } 
---	    },
---	    padding_left = lpad
---	  })
---	end
---     )
-      mario:set({
-        background = {
-	  image = {
-	    string = icon_dir .. "/r_stand.png"
-	  }
-	},
-	padding_left = lpad
-      })
-      socket.sleep(animation_duration)
-      lpad = lpad + step_size
+      sbar.animate("tanh", 50, 
+        function()
+	  mario:set({
+	    background = {
+	      image = {
+	        string = icon_dir .. "/r_stand.png"
+	      } 
+	    },
+	    padding_left = lpad
+	  })
+	end
+      )
+--      mario:set({
+--	background = {
+--	  image = {
+--	    string = icon_dir .. "/r_stand.png"
+--	  }
+--	},
+--	padding_left = lpad
+--     })
+      --socket.sleep(0.1)
+      lpad = lpad + 2
       step = true
 
     else
---      sbar.animate("sin", 100, 
---        function()
---	  mario:set({
---	    background = {
---	      image = {
---	        string = icon_dir .. "/r_run.png"
---	      } 
---	    },
---	    padding_left = lpad
---	  })
---	end
---      )
-      mario:set({
-	background = {
-	  image = {
-	    string = icon_dir .. "/r_run.png"
-	  }
-	},
-	padding_left = lpad
-      })
-      socket.sleep(animation_duration)
-      lpad = lpad + step_size
+      sbar.animate("tanh", 100, 
+        function()
+	  mario:set({
+	    background = {
+	      image = {
+	        string = icon_dir .. "/r_run.png"
+	      } 
+	    },
+	    padding_left = lpad
+	  })
+	end
+      )
+--      mario:set({
+--	background = {
+--	  image = {
+--	    string = icon_dir .. "/r_run.png"
+--	  }
+--	},
+--	padding_left = lpad
+ --     })
+      --socket.sleep(0.15)
+      lpad = lpad + 4
       step = false
     end
     lpad = lpad + step_size
-    --socket.sleep(animation_duration)
+    socket.sleep(animation_duration)
     --break
   end
 end
@@ -207,5 +157,6 @@ run_right()
 --mario:set({
 --  padding_left = 0
 --})
+
 
 

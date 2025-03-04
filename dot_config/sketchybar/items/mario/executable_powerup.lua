@@ -10,7 +10,7 @@ local icon_dir = os.getenv("HOME") .. "/.config/sketchybar/imgs"
 local mario_icon = icon_dir .. "/r_stand.png"
 local mario_width = 28
 local step_size = 5
-local animation_duration = 0.08
+local animation_duration = 0.1
 -- get display props
 function get_primary_display()
   local displays = sbar.query('displays')
@@ -57,14 +57,18 @@ end_position = right_end - mario_width
 print("start position", start_position)
 print("end position", end_position)
 
+
+
 local mario = sbar.add("item", "mario", {
   position = "left",
-  width = "dynamic",
+  width = "18",
+  --padding_right = start_position,
   y_offset = -15,
   background = {
     --color = 0xffa1b56c,
-    --color = 0xffffffff,
+    color = 0x00ffffff,
     --border_color = 0xffa1b56c,
+    corner_radius = 0,
     image = {
       string = mario_icon,
       scale = 1,
@@ -73,71 +77,54 @@ local mario = sbar.add("item", "mario", {
   },
 })
 
+local mushroom = sbar.add("item", "mushroom", {
+  position = "left",
+  width = "18",
+  --padding_right = start_position,
+  y_offset = -8,
+  background = {
+    color = 0x00ffffff,
+    image = {
+      string = icon_dir .. "/mushroom_smw.png",
+      scale = 1,
+      border_width = 0,
+      corner_radius = 0,
+    },
+  },
+})
+
 function run_right()
-  --local position = start_position
---  sbar.animate("tanh", 300, function()
---	    mario:set({
---              padding_left = end_position - start_position 
---	    })
---            end
---  )
   local step = false
   local lpad = 0
   local rend = end_position - start_position
   while lpad <= rend do
     if step == false then
-      sbar.animate("tanh", 50, 
-        function()
-	  mario:set({
-	    background = {
-	      image = {
-	        string = icon_dir .. "/r_stand.png"
-	      } 
-	    },
-	    padding_left = lpad
-	  })
-	end
-      )
---      mario:set({
---	background = {
---	  image = {
---	    string = icon_dir .. "/r_stand.png"
---	  }
---	},
---	padding_left = lpad
---     })
-      --socket.sleep(0.1)
-      lpad = lpad + 2
+      mario:set({
+        background = {
+	  image = {
+	    string = icon_dir .. "/r_stand.png"
+	  }
+	},
+	padding_left = lpad
+      })
+      socket.sleep(animation_duration)
+      lpad = lpad + step_size
       step = true
 
     else
-      sbar.animate("tanh", 100, 
-        function()
-	  mario:set({
-	    background = {
-	      image = {
-	        string = icon_dir .. "/r_run.png"
-	      } 
-	    },
-	    padding_left = lpad
-	  })
-	end
-      )
---      mario:set({
---	background = {
---	  image = {
---	    string = icon_dir .. "/r_run.png"
---	  }
---	},
---	padding_left = lpad
- --     })
-      --socket.sleep(0.15)
-      lpad = lpad + 4
+      mario:set({
+	background = {
+	  image = {
+	    string = icon_dir .. "/r_run.png"
+	  }
+	},
+	padding_left = lpad
+      })
+      socket.sleep(animation_duration)
+      lpad = lpad + step_size
       step = false
     end
     lpad = lpad + step_size
-    socket.sleep(animation_duration)
-    --break
   end
 end
 
@@ -149,6 +136,7 @@ function run_left()
     socket.sleep(anitmation_duration)
   end
 end
+print(sbar.query('mario').bounding_rects['display-1'].origin[1])
 
 run_right()
 --socket.sleep(1)
