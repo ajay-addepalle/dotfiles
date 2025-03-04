@@ -5,12 +5,17 @@ require 'luarocks.loader'
 local socket = require 'socket'
 local sbar = require("sketchybar")
 
+-- cleanup
+sbar.remove("mario")
+sbar.remove("mushroom")
 -- common props
 local icon_dir = os.getenv("HOME") .. "/.config/sketchybar/imgs"
-local mario_icon = icon_dir .. "/r_stand.png"
+local mario_icon = icon_dir .. "/r_stand_s.png"
 local mario_width = 28
-local step_size = 5
+local step_size = 15
 local animation_duration = 0.1
+local mario_size = "s"
+
 -- get display props
 function get_primary_display()
   local displays = sbar.query('displays')
@@ -47,52 +52,19 @@ function get_min_max_positions()
   end
 end
 
-
-print("Bar full width:", bar_width)
-print(get_min_max_positions())
-print("left bound", left_start)
-print("right_bound", right_end)
+get_min_max_positions()
+--print("Bar full width:", bar_width)
+--print(get_min_max_positions())
+--print("left bound", left_start)
+--print("right_bound", right_end)
 start_position = left_start
 end_position = right_end - mario_width
-print("start position", start_position)
-print("end position", end_position)
-
-local pipe_l = sbar.add("item", "pipe_l", {
-  position = "center",
-  width = "dynamic",
-  y_offset = -12,
-  padding_right = 92,
-  background = {
-    color = 0x00ffffff,
-    image = {
-      string = icon_dir .. "/warp_pipe_smw.png",
-      scale = 1,
-      border_width = 0,
-      corner_radius = 0,
-    },
-  },
-})
-
-local pipe_r = sbar.add("item", "pipe_r", {
-  position = "center",
-  width = "dynamic",
-  y_offset = -12,
-  padding_left = 92,
-  background = {
-    color = 0x00ffffff,
-    image = {
-      string = icon_dir .. "/warp_pipe_smw.png",
-      scale = 1,
-      border_width = 0,
-      corner_radius = 0,
-    },
-  },
-})
-
+--print("start position", start_position)
+--print("end position", end_position)
 
 local mario = sbar.add("item", "mario", {
   position = "left",
-  width = "dynamic",
+  width = "20",
   y_offset = -15,
   background = {
     --color = 0xffa1b56c,
@@ -108,8 +80,8 @@ local mario = sbar.add("item", "mario", {
 })
 
 local mushroom = sbar.add("item", "mushroom", {
-  position = "left",
-  width = "dynamic",
+  position = "right",
+  width = "8",
   y_offset = -8,
   background = {
     color = 0x00ffffff,
@@ -125,33 +97,15 @@ local mushroom = sbar.add("item", "mushroom", {
 
 function run_right()
   --local position = start_position
---  sbar.animate("tanh", 300, function()
---	    mario:set({
---              padding_left = end_position - start_position 
---	    })
---            end
---  )
   local step = false
   local lpad = 0
   local rend = end_position - start_position
   while lpad <= rend do
     if step == false then
---      sbar.animate("sin", 50, 
---        function()
---	  mario:set({
---	    background = {
---	      image = {
---	        string = icon_dir .. "/r_stand.png"
---	      } 
---	    },
---	    padding_left = lpad
---	  })
---	end
---     )
       mario:set({
         background = {
 	  image = {
-	    string = icon_dir .. "/r_stand.png"
+	    string = icon_dir .. "/r_stand_" .. mario_size .. ".png"
 	  }
 	},
 	padding_left = lpad
@@ -159,24 +113,11 @@ function run_right()
       socket.sleep(animation_duration)
       lpad = lpad + step_size
       step = true
-
     else
---      sbar.animate("sin", 100, 
---        function()
---	  mario:set({
---	    background = {
---	      image = {
---	        string = icon_dir .. "/r_run.png"
---	      } 
---	    },
---	    padding_left = lpad
---	  })
---	end
---      )
       mario:set({
 	background = {
 	  image = {
-	    string = icon_dir .. "/r_run.png"
+	    string = icon_dir .. "/r_run_" .. mario_size .. ".png"
 	  }
 	},
 	padding_left = lpad
@@ -185,28 +126,105 @@ function run_right()
       lpad = lpad + step_size
       step = false
     end
-    lpad = lpad + step_size
-    --socket.sleep(animation_duration)
-    --break
+  end
+end
+
+-- Function to transform Mario after getting mushroom
+function transformToSuperMario()
+  -- Play transformation animation
+  mushroom:set({
+    background = {
+      drawing = false
+    }
+  })
+  for i = 1, 3 do
+    mario:set({ background = { drawing = false } })
+    socket.sleep(0.2)
+    mario:set({ background = { drawing = true } })
+    socket.sleep(0.2)
+  end
+  mario_size = "b"
+  -- Transform to big Mario
+  mario:set({
+    y_offset = -4,
+    background = {
+      image = {
+        string = icon_dir .. "/l_stand_b.png",
+      }
+    }
+  })
+end
+
+-- Function to make Mario jump
+local function jump()
+  local is_big = mario_size == 'b'
+  local jump_height = is_big and 25 or 15
+  local current_pos = is_big and -4 or -8
+  for i = 1, 1 do
+    mario:set({
+      background = {
+        image = {
+          string = icon_dir .. "/l_jump_" .. mario_size .. ".png"
+        }
+      }
+    })
+    for y = current_pos, jump_height, 3 do
+      mario:set({ y_offset = y })
+      socket.sleep(0.05)
+    end
+
+    for y = jump_height, current_pos, -3 do
+      mario:set({ y_offset = y })
+      socket.sleep(0.05)
+    end
+    mario:set({
+      background = {
+        image = {
+          string = icon_dir .. "/l_stand_" .. mario_size .. ".png"
+        }
+      }
+    })
+    socket.sleep(0.5)
   end
 end
 
 function run_left()
-  local lpad = end_position
-  while lpad >= start_position do
-    mario:set({padding_left = lpad})
-    lpad = lpad - step_size
-    socket.sleep(anitmation_duration)
+  local step = false
+  local lpad = end_position - start_position
+  while lpad >= 0 do
+    if step == false then
+      mario:set({
+        background = {
+	  image = {
+	    string = icon_dir .. "/r_stand_" .. mario_size .. ".png"
+	  }
+	},
+	padding_left = lpad
+      })
+      socket.sleep(animation_duration)
+      lpad = lpad - step_size
+      step = true
+    else
+      mario:set({
+	background = {
+	  image = {
+	    string = icon_dir .. "/r_run_" .. mario_size .. ".png"
+	  }
+	},
+	padding_left = lpad
+      })
+      socket.sleep(animation_duration)
+      lpad = lpad - step_size
+      step = false
+    end
   end
 end
 
 run_right()
---socket.sleep(1)
---run_left()
-
---mario:set({
---  padding_left = 0
---})
+transformToSuperMario()
+jump()
+run_left()
+jump()
 
 
 
