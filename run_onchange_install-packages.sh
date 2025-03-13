@@ -25,3 +25,6 @@ git clone https://github.com/Aloxaf/fzf-tab ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/p
 
 # skeytchybar lua 
 (git clone https://github.com/FelixKratz/SbarLua.git /tmp/SbarLua && cd /tmp/SbarLua/ && make install && rm -rf /tmp/SbarLua/)
+
+# kickstart.nvim
+git clone https://github.com/ajay-addepalle/kickstart.nvim.git "${XDG_CONFIG_HOME:-$HOME/.config}"/nvim
