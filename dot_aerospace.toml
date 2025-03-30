@@ -51,7 +51,7 @@ on-focused-monitor-changed = [
 ]
 
 on-focus-changed = [
-  'exec-and-forget sketchybar --trigger aerospace_focus_change FOCUSED_MONITOR=$AEROSPACE_FOCUSED_MONITOR',
+  'exec-and-forget sketchybar --trigger aerospace_focus_change',
 ]
 
 # You can effectively turn off macOS "Hide application" (cmd-h) feature by toggling this flag

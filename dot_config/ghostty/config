@@ -1,10 +1,14 @@
 #
-theme = catppuccin-mocha
+#theme = catppuccin-mocha
 #theme = Earthsong
 #theme = Espresso Libre
 #theme = gruvbox-material
 #theme = IR_Black
 #theme = Monokai Remastered
+#theme = Monokai Soda
+#theme = Mathias
+#theme = synthwave
+theme = Nocturnal Winter
 
 #font-family = "BlexMono Nerd Font Mono"
 #font-family = "FiraCode Nerd Font Mono"

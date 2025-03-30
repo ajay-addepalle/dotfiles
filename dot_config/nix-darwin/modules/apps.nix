@@ -64,8 +64,11 @@
       "borders"
       "sketchybar"
       "lua"
+      "luarocks"
       "switchaudio-osx"
       "nowplaying-cli"
+      "btop"
+      "ripgrep"
       # CLI
       "zoxide"
       "starship"
