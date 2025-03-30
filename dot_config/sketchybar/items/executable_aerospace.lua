@@ -28,7 +28,7 @@ toggle_windows:subscribe("mouse.entered", function()
 			label = { string = is_show_windows and icons.chevron.left or icons.chevron.right, width = "dynamic" },
 			background = {
 				color = colors.with_alpha(colors.bg, 1),
-				-- border_width = 2,
+				border_width = 2,
 			},
 		})
 	end)
@@ -40,7 +40,7 @@ toggle_windows:subscribe("mouse.exited", function()
 			label = { width = 0 },
 			background = {
 				color = colors.with_alpha(colors.bg, 0),
-				-- border_width = 0,
+				border_width = 0,
 			},
 		})
 	end)
@@ -55,9 +55,9 @@ toggle_windows:subscribe("aerospace_mode_change", function(ENV)
 					color = colors.yellow,
 				},
 				background = {
-					-- color = colors.with_alpha(colors.yellow, 1),
-					-- border_color = colors.white,
-					-- border_width = 2,
+					color = colors.with_alpha(colors.yellow, 1),
+					border_color = colors.white,
+					border_width = 2,
 				},
 			})
 		else
@@ -164,7 +164,7 @@ for workspace_index = 1, max_workspaces do
 				icon = { highlight = is_focused },
 				label = { highlight = is_focused },
 				background = {
-					-- border_width = is_focused and 2 or 0,
+					border_width = is_focused and 2 or 0,
 				},
 			})
 		end)
@@ -185,7 +185,7 @@ for workspace_index = 1, max_workspaces do
 			workspace:set({
 				icon = { highlight = true },
 				label = { highlight = true },
-				-- background = { border_width = 2 },
+				background = { border_width = 2 },
 			})
 		end)
 	end)
@@ -211,7 +211,7 @@ for workspace_index = 1, max_workspaces do
 		workspaces[tonumber(focused_workspace)]:set({
 			icon = { highlight = true },
 			label = { highlight = true },
-			-- background = { border_width = 2 },
+			background = { border_width = 2 },
 		})
 	end)
 end
