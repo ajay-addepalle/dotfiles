@@ -17,7 +17,7 @@ after-startup-command = [
 exec-on-workspace-change = [
 '/bin/bash', 
 '-c',
-'exec-and-forget sketchybar --trigger aerospace_monitor_change FOCUSED_MONITOR=$AEROSPACE_FOCUSED_MONITOR',
+'sketchybar --trigger aerospace_workspace_change FOCUSED=$AEROSPACE_FOCUSED_WORKSPACE',
 ]
 
 # Start AeroSpace at login

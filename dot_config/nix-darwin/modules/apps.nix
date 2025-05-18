@@ -69,6 +69,8 @@
       "nowplaying-cli"
       "btop"
       "ripgrep"
+      "make"
+      "gcc"
       # CLI
       "zoxide"
       "starship"

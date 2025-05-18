@@ -4,7 +4,7 @@ local settings = require("settings")
 local app_icons = require("helpers.app_icons")
 
 local max_workspaces = 9
-local focused_workspace_index = nil
+local focused_workspace_index = 1
 local is_show_windows = true
 
 -- Create a toggle button that control the visibility for workspace labels
@@ -136,7 +136,7 @@ for workspace_index = 1, max_workspaces do
 		icon = {
 			font = { family = settings.font.numbers },
 			string = workspace_index,
-			padding_left = 5,
+			padding_left = 12,
 			padding_right = 8,
 		},
 		label = {
@@ -147,7 +147,7 @@ for workspace_index = 1, max_workspaces do
 			y_offset = -1,
 		},
 		padding_right = 1,
-		padding_left = 2,
+		padding_left = 1,
 		background = {
 			border_color = colors.fg_highlight,
 		},
@@ -156,9 +156,9 @@ for workspace_index = 1, max_workspaces do
 	workspaces[workspace_index] = workspace
 
 	workspace:subscribe("aerospace_workspace_change", function(env)
-		focused_workspace_index = tonumber(env.FOCUSED_WORKSPACE)
+		print(dump(env))
+		focused_workspace_index = tonumber(env.FOCUSED)
 		local is_focused = focused_workspace_index == workspace_index
-
 		sbar.animate("tanh", 10, function()
 			workspace:set({
 				icon = { highlight = is_focused },
@@ -176,7 +176,7 @@ for workspace_index = 1, max_workspaces do
 
 	-- Allow workspace switching via click
 	workspace:subscribe("mouse.clicked", function()
-		local focus_workspace = "aerospace workspace " .. workspace_index
+		local focus_workspace = "aerospace workspace --fail-if-noop " .. workspace_index
 		sbar.exec(focus_workspace)
 	end)
 
@@ -208,12 +208,28 @@ for workspace_index = 1, max_workspaces do
 	-- Set initial workspace state
 	updateWindows(workspace_index)
 	sbar.exec("aerospace list-workspaces --focused", function(focused_workspace)
-		workspaces[tonumber(focused_workspace)]:set({
-			icon = { highlight = true },
-			label = { highlight = true },
-			background = { border_width = 2 },
-		})
+		if focused_workspace ~= nil then
+			workspaces[tonumber(focused_workspace)]:set({
+				icon = { highlight = true },
+				label = { highlight = true },
+				background = { border_width = 2 },
+			})
+		end
 	end)
+end
+
+function dump(tbl)
+	io.write("{")
+	for k, v in pairs(tbl) do
+		io.write(k .. " = ")
+		if type(v) == "table" then
+			dump(v)
+		else
+			io.write(tostring(v))
+		end
+		io.write(", ")
+	end
+	io.write("}")
 end
 
 -- Toggle visibility of workspace's labels(open windows)

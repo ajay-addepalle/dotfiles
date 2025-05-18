@@ -128,11 +128,15 @@ export TIMER_PRECISION=2
 
 alias -g ff="aerospace list-windows --all | fzf --reverse --bind 'enter:execute(bash -c \"aerospace focus --window-id {1}\")+abort'"
 alias -g vim=nvim
+alias -g gcc="gcc-14"
+alias -g c++="c++-14"
+alias -g g++="g++-14"
+
 
 # Environment variables
 # export LUA_PATH="$LUA_PATH;"
 # export LUA_CPATH="/opt/homebrew/lib/lua/5.4/?.so;/opt/homebrew/lib/lua/5.4/loadall.so;./?.so;/Users/aaddepalle/.local/share/sketchybar_lua/?.so"
-export PATH=/opt/homebrew/bin/lua:$PATH
+export PATH=$(brew --prefix)'/bin:'$(brew --prefix)'/sbin':$PATH
 HISTSIZE=100000
 SAVEHIST=100000
 
