@@ -48,6 +48,7 @@ end)
 
 toggle_windows:subscribe("aerospace_mode_change", function(ENV)
 	local mode = ENV.MODE
+	print(mode)
 	sbar.animate("tanh", 10, function()
 		if mode ~= "main" then
 			toggle_windows:set({
@@ -156,7 +157,6 @@ for workspace_index = 1, max_workspaces do
 	workspaces[workspace_index] = workspace
 
 	workspace:subscribe("aerospace_workspace_change", function(env)
-		print(dump(env))
 		focused_workspace_index = tonumber(env.FOCUSED)
 		local is_focused = focused_workspace_index == workspace_index
 		sbar.animate("tanh", 10, function()
