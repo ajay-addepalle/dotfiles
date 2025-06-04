@@ -33,6 +33,8 @@ local theme = {
 	black = 0xff000000,
 	white = 0xffffffff,
 	github_blue = 0xff4170ae,
+	borders_active = 0xff77c23a,
+	borders_inactive_color = 0xff494d64,
 }
 
 for k, v in pairs(theme) do

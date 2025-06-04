@@ -48,16 +48,16 @@ end)
 
 toggle_windows:subscribe("aerospace_mode_change", function(ENV)
 	local mode = ENV.MODE
-	print(mode)
+	--print(mode)
 	sbar.animate("tanh", 10, function()
 		if mode ~= "main" then
 			toggle_windows:set({
 				icon = {
-					color = colors.yellow,
+					color = colors.fg,
 				},
 				background = {
-					color = colors.with_alpha(colors.yellow, 1),
-					border_color = colors.white,
+					color = colors.with_alpha(colors.fg_highlight, 0.5),
+					border_color = colors.borders_active,
 					border_width = 2,
 				},
 			})
