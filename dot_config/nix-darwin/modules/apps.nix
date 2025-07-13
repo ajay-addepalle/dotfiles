@@ -20,6 +20,7 @@
   # List packages installed in system profile. To seach by name, run:
   # nix-env -qaP | grep wget  
   environment.systemPackages = with pkgs; [
+    devenv
     git
     mkalias
     rsync
@@ -28,6 +29,7 @@
     chezmoi
     zsh
     fzf
+    ollama
   ];
 
   environment.variables = {
@@ -61,19 +63,23 @@
     brews = [
       # SYSTEM TOOLS
       "mas"
-      "borders"
-      "sketchybar"
-      "lua"
-      "luarocks"
+      "btop"
       "switchaudio-osx"
       "nowplaying-cli"
-      "btop"
       "ripgrep"
+      # Workstation
+      "borders"
+      "sketchybar"
+      # Language
+      "lua"
+      "luarocks"
+      # Build
       "make"
       "gcc"
       # CLI
       "zoxide"
       "starship"
+      "direnv"
     ];
 
     # `brew install --cask`
@@ -85,30 +91,42 @@
       "google-chrome"
       "aerospace"
       "maccy"
+      "orbstack"
+      # Fonts
       "sf-symbols"
       "font-sf-mono"
       "font-sf-pro"
       "font-sketchybar-app-font"
-
       # COMMS
       "discord"
-
       # PRODUCTIVITY
       "obsidian"
-
       # MEDIA
       "plexamp"
       "plex"
-
       # NETWORK
       "tailscale"
       "vnc-viewer"
-
       # TERMINAL
       "ghostty"
       
     ];
     masApps = {
+    };
+  };
+  launchd = {
+    user = {
+      agents = {
+        ollama-serve = {
+          command = "${pkgs.ollama}/bin/ollama serve";
+          serviceConfig = {
+            KeepAlive = true;
+            RunAtLoad = true;
+            StandardOutPath = "/tmp/ollama.out.log";
+            StandardErrorPath = "/tmp/ollama.err.log";
+          };
+        };
+      };
     };
   };
 
