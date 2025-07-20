@@ -159,3 +159,5 @@ zstyle ':completion:*' menu no
 #source $(brew --prefix)/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 eval "$(zoxide init zsh --cmd cd)"
 eval "$(starship init zsh)"
+eval "$(mise activate zsh)"
+
