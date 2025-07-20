@@ -67,49 +67,55 @@
       "switchaudio-osx"
       "nowplaying-cli"
       "ripgrep"
-      # Workstation
+      # WORKSTATION
       "borders"
       "sketchybar"
-      # Language
+      # LANGAGES
       "lua"
       "luarocks"
-      # Build
+      "zig"
+      # BUILD TOOL
       "make"
       "gcc"
       # CLI
       "zoxide"
       "starship"
-      "direnv"
+      "mise"
     ];
 
     # `brew install --cask`
     # TODO Feel free to add your favorite apps here.
     casks = [
-      # SYSTEM TOOLS
+      # PRODUCTIVITY
       "alfred"
-      "firefox"
-      "google-chrome"
       "aerospace"
       "maccy"
+      "obsidian"
+      # SOFTWARE
+      "firefox"
+      "google-chrome"
+      "synology-drive"
+      "synergy-core"
+      "vnc-viewer"
+      # DEV
+      "ghostty"
       "orbstack"
-      # Fonts
+      "localsend"
+      "intellij-idea"
+      "visual-studio-code"
+      # FONTS
       "sf-symbols"
       "font-sf-mono"
       "font-sf-pro"
       "font-sketchybar-app-font"
       # COMMS
       "discord"
-      # PRODUCTIVITY
-      "obsidian"
       # MEDIA
       "plexamp"
       "plex"
       # NETWORK
       "tailscale"
       "vnc-viewer"
-      # TERMINAL
-      "ghostty"
-      
     ];
     masApps = {
     };
