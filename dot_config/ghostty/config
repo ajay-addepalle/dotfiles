@@ -1,4 +1,6 @@
-#
+
+custom-shader = shaders/cursor_blaze_tapered.glsl
+
 #theme = catppuccin-mocha
 #theme = Earthsong
 #theme = Espresso Libre

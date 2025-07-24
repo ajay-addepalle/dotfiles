@@ -3,7 +3,7 @@ local settings = require("settings")
 local icons = require("icons")
 
 local workspace_item = sbar.add("item", "workspace_indicator", {
-	drawing = false,
+	drawing = true,
 	position = "right",
 	icon = {
 		string = icons.aerospace,

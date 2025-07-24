@@ -20,7 +20,6 @@
   # List packages installed in system profile. To seach by name, run:
   # nix-env -qaP | grep wget  
   environment.systemPackages = with pkgs; [
-    devenv
     git
     mkalias
     rsync
@@ -77,6 +76,7 @@
       # BUILD TOOL
       "make"
       "gcc"
+      "gettext"
       # CLI
       "zoxide"
       "starship"
@@ -94,9 +94,6 @@
       # SOFTWARE
       "firefox"
       "google-chrome"
-      "synology-drive"
-      "synergy-core"
-      "vnc-viewer"
       # DEV
       "ghostty"
       "orbstack"
@@ -114,7 +111,6 @@
       "plexamp"
       "plex"
       # NETWORK
-      "tailscale"
       "vnc-viewer"
     ];
     masApps = {
