@@ -65,9 +65,10 @@ float ease(float x) {
     return pow(1.0 - x, 3.0);
 }
 
-const vec4 TRAIL_COLOR = vec4(0.01, 0.725, 0.161, 1.0);
-const vec4 TRAIL_COLOR_ACCENT = vec4(1.0, 0., 0., 1.0);
-const float DURATION = 0.05; //IN SECONDS
+const vec4 TRAIL_COLOR = vec4(0.47, 0.76, 0.23, 0.2);
+//const vec4 TRAIL_COLOR = vec4(0.01, 0.725490.161, 1.0);
+const vec4 TRAIL_COLOR_ACCENT = vec4(0.47, 0.67, 0.23, 0.2);
+const float DURATION = 0.02; //IN SECONDS
 
 void mainImage(out vec4 fragColor, in vec2 fragCoord)
 {
