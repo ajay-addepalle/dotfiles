@@ -77,6 +77,7 @@
       "make"
       "gcc"
       "gettext"
+      "zig"
       # CLI
       "zoxide"
       "starship"

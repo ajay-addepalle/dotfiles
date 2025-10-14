@@ -1,6 +1,6 @@
 return {
 	paddings = 4,
-	group_paddings = 5,
+	group_paddings = 6,
 	icon = {
 		padding_left = 7,
 		padding_right = 8,
@@ -11,7 +11,7 @@ return {
 	},
 
 	icons = "sf-symbols", -- alternatively available: NerdFont
-        --icons = "Hack Nerd Font"
+	--icons = "Hack Nerd Font"
 	-- This is a font configuration for SF Pro and SF Mono (installed manually)
 	font = require("helpers.default_font"),
 

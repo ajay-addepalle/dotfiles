@@ -36,4 +36,7 @@ clipboard-paste-protection = false
 
 window-save-state = "default"
 # save state supports, always, never
+#keybind = global:cmd+backquote=toggle_quick_terminal
 
+# TERMINFO
+#shell-integration-features = ssh-terminfo,ssh-env
