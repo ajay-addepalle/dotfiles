@@ -1,5 +1,9 @@
-{ pkgs, config, username, ...}: {
-
+{
+  pkgs,
+  config,
+  username,
+  ...
+}: {
   ##########################################################################
   #
   #  Install all apps and packages here.
@@ -18,7 +22,7 @@
   #
   # Related Discussion: https://discourse.nixos.org/t/darwin-again/29331
   # List packages installed in system profile. To seach by name, run:
-  # nix-env -qaP | grep wget  
+  # nix-env -qaP | grep wget
   environment.systemPackages = with pkgs; [
     git
     mkalias
@@ -108,6 +112,7 @@
       "font-sketchybar-app-font"
       # COMMS
       "discord"
+      "microsoft-teams"
       # MEDIA
       "plexamp"
       "plex"
@@ -133,7 +138,7 @@
     };
   };
 
-/*
+  /*
   system.activationScripts.applications.text = pkgs.lib.mkForce ''
     # Set up applications.
     echo "setting up /Applications/Nix Apps..." >&2
@@ -142,5 +147,5 @@
     mkdir -p "$baseDir"
     ${pkgs.rsync}/bin/rsync --archive --checksum --chmod=-w --copy-unsafe-links --delete "$appsSrc" "$baseDir"
   '';
-*/
+  */
 }
