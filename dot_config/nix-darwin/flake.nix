@@ -1,5 +1,5 @@
 {
-  description = "Ajay's nix-darwin system flake";
+  description = "Ajay's personal system flake: NixOS, nix-darwin, Home manager";
 
   # the nixConfig here only affects the flake itself, not the system configuration!
   nixConfig = {
@@ -15,8 +15,15 @@
     nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
     # Use `github:NixOS/nixpkgs/nixpkgs-24.11-darwin` to use Nixpkgs 24.11.
     # Use `github:nix-darwin/nix-darwin/nix-darwin-24.11` to use Nixpkgs 24.11.
-    nix-darwin.url = "github:nix-darwin/nix-darwin/master";
-    nix-darwin.inputs.nixpkgs.follows = "nixpkgs";
+    nix-darwin = {
+      url = "github:nix-darwin/nix-darwin/master";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    home-manager = {
+      url = "github:nix-community/home-manager";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   # The `outputs` function will return all the build results of the flake.
@@ -27,6 +34,7 @@
   outputs = inputs @ {
     self,
     nix-darwin,
+    home-manager,
     nixpkgs,
     ...
   }: let

@@ -33,6 +33,7 @@
     zsh
     fzf
     ollama
+    uv
   ];
 
   environment.variables = {
@@ -86,6 +87,8 @@
       "zoxide"
       "starship"
       "mise"
+      # DEV TOOLS
+      #"bruno"
     ];
 
     # `brew install --cask`
@@ -105,6 +108,10 @@
       "localsend"
       "intellij-idea"
       "visual-studio-code"
+      "bruno"
+      # agentic tools
+      "claude"
+      "claude-code"
       # FONTS
       "sf-symbols"
       "font-sf-mono"
@@ -118,6 +125,7 @@
       "plex"
       # NETWORK
       "vnc-viewer"
+      "wifiman"
     ];
     masApps = {
     };
