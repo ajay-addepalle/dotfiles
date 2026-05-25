@@ -87,7 +87,7 @@
           pkgs = import nixpkgs { inherit system; };
           extraSpecialArgs = { inherit inputs username hostname; };
           modules = [
-            ./home/linux.nix
+            # ./home/linux.nix
           ] ++ extraModules;
         };
   in {
@@ -115,13 +115,12 @@
         #./modules/apps.nix
       #./modules/host-users.nix
       #];
-    };
-    # nix code formatter
-      #formatter.${system} = nixpkgs.legacyPackages.${system}.alejandra;
-    # `nix fmt` ------------------------------------------------------------
     formatter.aarch64-darwin = nixpkgs.legacyPackages.aarch64-darwin.nixpkgs-fmt;
     formatter.x86_64-darwin  = nixpkgs.legacyPackages.x86_64-darwin.nixpkgs-fmt;
     formatter.x86_64-linux   = nixpkgs.legacyPackages.x86_64-linux.nixpkgs-fmt;
     formatter.aarch64-linux  = nixpkgs.legacyPackages.aarch64-linux.nixpkgs-fmt;
-  };
+    };
+    # nix code formatter
+      #formatter.${system} = nixpkgs.legacyPackages.${system}.alejandra;
+    # `nix fmt` ------------------------------------------------------------
 }
