@@ -22,6 +22,122 @@
   };
 
   environment.systemPackages = with pkgs; [
+    ollama
+    uv
   ];
+
+
+  # TODO To make this work, homebrew need to be installed manually, see https://brew.sh
+  #
+  # The apps installed by homebrew are not managed by nix, and not reproducible!
+  # But on macOS, homebrew has a much larger selection of apps than nixpkgs, especially for GUI apps!
+  homebrew = {
+    enable = true;
+
+    onActivation = {
+      autoUpdate = true;
+      upgrade = true;
+      # 'zap': uninstalls all formulae(and related files) not listed here.
+      cleanup = "uninstall";
+    };
+
+    taps = [
+      {
+        name = "homebrew/services";
+        #trusted = true;
+      }
+      {
+        name = "nikitabobko/tap";
+        #trusted = true;
+      }
+      {
+        name = "FelixKratz/formulae";
+        #trusted = true;
+      }
+    ];
+
+    # `brew install`
+    # TODO Feel free to add your favorite apps here.
+    brews = [
+      # SYSTEM TOOLS
+      #"mas"
+      #"btop"
+      #"switchaudio-osx"
+      #"nowplaying-cli"
+      #"ripgrep"
+      # WORKSTATION
+      "borders"
+      "sketchybar"
+      # LANGAGES
+      "lua"
+      "luarocks"
+      "zig"
+      # BUILD TOOL
+      "make"
+      "gcc"
+      "gettext"
+      "zig"
+      # CLI
+      #"zoxide"
+      #"starship"
+      "mise"
+      # DEV TOOLS
+    ];
+
+    # `brew install --cask`
+    # TODO Feel free to add your favorite apps here.
+    casks = [
+      # PRODUCTIVITY
+      "alfred"
+      "aerospace"
+      #"maccy"
+      #"obsidian"
+      # SOFTWARE
+      #"firefox"
+      #"google-chrome"
+      # DEV
+      #"ghostty"
+      #"orbstack"
+      #"localsend"
+      "intellij-idea"
+      "visual-studio-code"
+      "bruno"
+      # agentic tools
+      "claude"
+      "claude-code"
+      # FONTS
+      #"sf-symbols"
+      #"font-sf-mono"
+      #"font-sf-pro"
+      #"font-sketchybar-app-font"
+      # COMMS
+      "discord"
+      "microsoft-teams"
+      # MEDIA
+      "plexamp"
+      "plex"
+      # NETWORK
+      "vnc-viewer"
+      "wifiman"
+    ];
+    masApps = {
+    };
+  };
+  launchd = {
+    user = {
+      agents = {
+        ollama-serve = {
+          command = "${pkgs.ollama}/bin/ollama serve";
+          serviceConfig = {
+            KeepAlive = true;
+            RunAtLoad = true;
+            StandardOutPath = "/tmp/ollama.out.log";
+            StandardErrorPath = "/tmp/ollama.err.log";
+          };
+        };
+      };
+    };
+  };
+
 
 }

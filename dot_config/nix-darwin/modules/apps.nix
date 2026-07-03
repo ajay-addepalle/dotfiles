@@ -32,8 +32,6 @@
     chezmoi
     zsh
     fzf
-    ollama
-    uv
   ];
 
   environment.variables = {
@@ -57,9 +55,18 @@
     };
 
     taps = [
-      "homebrew/services"
-      "nikitabobko/tap"
-      "FelixKratz/formulae"
+      {
+        name = "homebrew/services";
+        #trusted = true;
+      }
+      {
+        name = "nikitabobko/tap";
+        #trusted = true;
+      }
+      {
+        name = "FelixKratz/formulae";
+        #trusted = true;
+      }
     ];
 
     # `brew install`
@@ -72,31 +79,30 @@
       "nowplaying-cli"
       "ripgrep"
       # WORKSTATION
-      "borders"
-      "sketchybar"
+      #"borders"
+      #"sketchybar"
       # LANGAGES
-      "lua"
-      "luarocks"
-      "zig"
+      #"lua"
+      #"luarocks"
+      #"zig"
       # BUILD TOOL
-      "make"
-      "gcc"
-      "gettext"
-      "zig"
+      #"make"
+      #"gcc"
+      #"gettext"
+      #"zig"
       # CLI
       "zoxide"
       "starship"
-      "mise"
+      #"mise"
       # DEV TOOLS
-      #"bruno"
     ];
 
     # `brew install --cask`
     # TODO Feel free to add your favorite apps here.
     casks = [
       # PRODUCTIVITY
-      "alfred"
-      "aerospace"
+      #"alfred"
+      #"aerospace"
       "maccy"
       "obsidian"
       # SOFTWARE
@@ -106,43 +112,28 @@
       "ghostty"
       "orbstack"
       "localsend"
-      "intellij-idea"
-      "visual-studio-code"
-      "bruno"
+      #"intellij-idea"
+      #"visual-studio-code"
+      #"bruno"
       # agentic tools
-      "claude"
-      "claude-code"
+      #"claude"
+      #"claude-code"
       # FONTS
       "sf-symbols"
       "font-sf-mono"
       "font-sf-pro"
       "font-sketchybar-app-font"
       # COMMS
-      "discord"
-      "microsoft-teams"
+      #"discord"
+      #"microsoft-teams"
       # MEDIA
-      "plexamp"
-      "plex"
+      #"plexamp"
+      #"plex"
       # NETWORK
-      "vnc-viewer"
-      "wifiman"
+      #"vnc-viewer"
+      #"wifiman"
     ];
     masApps = {
-    };
-  };
-  launchd = {
-    user = {
-      agents = {
-        ollama-serve = {
-          command = "${pkgs.ollama}/bin/ollama serve";
-          serviceConfig = {
-            KeepAlive = true;
-            RunAtLoad = true;
-            StandardOutPath = "/tmp/ollama.out.log";
-            StandardErrorPath = "/tmp/ollama.err.log";
-          };
-        };
-      };
     };
   };
 
