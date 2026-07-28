@@ -1,5 +1,5 @@
 {
-  description = "Ajay's personal system flake: NixOS, nix-darwin, Home manager";
+  description = "Ajay's personal system flake: NixOS, nix-darwin";
 
   # the nixConfig here only affects the flake itself, not the system configuration!
   nixConfig = {
@@ -20,10 +20,6 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    home-manager = {
-      url = "github:nix-community/home-manager";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
   };
 
   # The `outputs` function will return all the build results of the flake.
@@ -34,7 +30,6 @@
   outputs = {
     self,
     nix-darwin,
-    home-manager,
     nixpkgs,
     ...
   }@inputs: 
@@ -55,13 +50,6 @@
           specialArgs = { inherit inputs username hostname; };
           modules = [
             ./hosts/${hostname}
-            #home-manager.darwinModules.home-manager
-            #{
-            #  home-manager.useGlobalPkgs = true;
-            #  home-manager.useUserPackages = true;
-            #  home-manager.extraSpecialArgs = { inherit inputs username hostname; };
-            #  home-manager.users.${username} = import ./home/darwin.nix;
-            #}
           ] ++ extraModules;
         };
 
@@ -71,26 +59,9 @@
           specialArgs = { inherit inputs username hostname; };
           modules = [
             ./hosts/${hostname}
-            home-manager.nixosModules.home-manager
-            {
-              home-manager.useGlobalPkgs = true;
-              home-manager.useUserPackages = true;
-              home-manager.extraSpecialArgs = { inherit inputs username hostname; };
-              home-manager.users.${username} = import ./home/linux.nix;
-            }
           ] ++ extraModules;
         };
 
-      # For non-NixOS Linux hosts (Ubuntu/Debian/etc.) where you only manage
-      # the user environment, not the system.
-      mkHome = { hostname, system, username, extraModules ? [] }:
-        home-manager.lib.homeManagerConfiguration {
-          pkgs = import nixpkgs { inherit system; };
-          extraSpecialArgs = { inherit inputs username hostname; };
-          modules = [
-            # ./home/linux.nix
-          ] ++ extraModules;
-        };
   in {
     # Build darwin flake using:
     darwinConfigurations = {

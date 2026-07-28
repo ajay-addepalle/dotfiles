@@ -36,7 +36,26 @@ clipboard-paste-protection = false
 
 window-save-state = "default"
 # save state supports, always, never
-#keybind = global:cmd+backquote=toggle_quick_terminal
+
+# quake style global term
+keybind = global:cmd+grave_accent=toggle_quick_terminal
+
+# Creating splits
+keybind = ctrl+shift+h=new_split:left
+keybind = ctrl+shift+j=new_split:down
+keybind = ctrl+shift+k=new_split:up
+keybind = ctrl+shift+l=new_split:right
+
+# Navigating splits
+keybind = ctrl+h=goto_split:left
+keybind = ctrl+j=goto_split:bottom
+keybind = ctrl+k=goto_split:top
+keybind = ctrl+l=goto_split:right
 
 # TERMINFO
 #shell-integration-features = ssh-terminfo,ssh-env
+
+# macos-titlebar-style = tabs
+
+#command = ghostty -e /bin/zsh -c pwd
+#

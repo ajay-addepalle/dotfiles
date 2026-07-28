@@ -82,6 +82,7 @@
       #"starship"
       "mise"
       # DEV TOOLS
+      "difftastic"
     ];
 
     # `brew install --cask`
