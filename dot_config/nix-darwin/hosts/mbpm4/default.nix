@@ -54,6 +54,9 @@
         name = "FelixKratz/formulae";
         #trusted = true;
       }
+      {
+        name = "joncrangle/tap";
+      }
     ];
 
     # `brew install`
@@ -68,6 +71,7 @@
       # WORKSTATION
       "borders"
       "sketchybar"
+      #"sketchybar-system-stats"
       # LANGAGES
       "lua"
       "luarocks"
@@ -83,6 +87,8 @@
       "mise"
       # DEV TOOLS
       "difftastic"
+      #"microsoft-auto-update"
+      #"dotnet"
     ];
 
     # `brew install --cask`
