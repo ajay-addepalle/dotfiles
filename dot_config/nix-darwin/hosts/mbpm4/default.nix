@@ -68,10 +68,11 @@
       #"switchaudio-osx"
       #"nowplaying-cli"
       #"ripgrep"
+      "nethogs"
       # WORKSTATION
       "borders"
       "sketchybar"
-      #"sketchybar-system-stats"
+      "sketchybar-system-stats"
       # LANGAGES
       "lua"
       "luarocks"
@@ -88,7 +89,7 @@
       # DEV TOOLS
       "difftastic"
       #"microsoft-auto-update"
-      #"dotnet"
+      "dotnet"
     ];
 
     # `brew install --cask`
