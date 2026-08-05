@@ -2,37 +2,35 @@ local icons = require("icons")
 local sbar = require("sketchybar")
 local colors = require("colors")
 
-local upload_speed = sbar.add("item", "widgets.upload_speed", {
-	position = "right",
-	padding_left = -5,
-	width = 0,
-	icon = {
-		padding_right = 0,
-		font = { size = 9.0 },
-		string = icons.wifi.upload,
-	},
-	label = {
-		font = { size = 9.0 },
-		color = colors.red,
-		string = "??? KB/s",
-	},
-	y_offset = 4,
-})
-
 local download_speed = sbar.add("item", "widgets.download_speed", {
 	position = "right",
-	padding_left = -5,
+	padding_left = -12,
 	icon = {
 		padding_right = 0,
-		font = { size = 9.0 },
+		font = { size = 9 },
 		string = icons.wifi.download,
 	},
 	label = {
-		font = { size = 9.0 },
-		color = colors.blue,
+		font = { size = 9 },
+		color = colors.grey,
 		string = "??? KB/s",
 	},
-	y_offset = -4,
+})
+
+local upload_speed = sbar.add("item", "widgets.upload_speed", {
+	position = "right",
+	padding_left = -12,
+	width = 0,
+	icon = {
+		padding_right = 0,
+		font = { size = 9 },
+		string = icons.wifi.upload,
+	},
+	label = {
+		font = { size = 9 },
+		color = colors.grey,
+		string = "??? KB/s",
+	},
 })
 
 local function format_speed(speed_str)
@@ -47,8 +45,8 @@ local function format_speed(speed_str)
 end
 
 upload_speed:subscribe("system_stats", function(env)
-	local up_color = (env.NETWORK_TX_en0 == "0") and colors.grey or colors.red
-	local down_color = (env.NETWORK_RX_en0 == "0") and colors.grey or colors.blue
+	local up_color = (env.NETWORK_TX_en0 == "0") and colors.grey or colors.green
+	local down_color = (env.NETWORK_RX_en0 == "0") and colors.grey or colors.green
 
 	local tx = format_speed(env.NETWORK_TX_en0)
 	local rx = format_speed(env.NETWORK_RX_en0)
